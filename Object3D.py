@@ -1,9 +1,6 @@
 # .obj file format
 class Object3D:
-    def __init__(self):
-        self.vertices = []
-        self.faces = []
-
+    
     def __init__(self, filename):
         self.vertices = []
         self.faces = []
@@ -16,11 +13,11 @@ class Object3D:
             for line in f:
                 if line.startswith("v "):
                     _, v1, v2, v3 = line.split()
-                    vertex = [float(v1), float(v2), float(v3)]
+                    vertex = [float(v1), float(v2), float(v3)] # x y z
                     self.vertices.append(vertex)
                 elif line.startswith("f"):
                     _, *verts = line.split()
-                    face = [int(vertex_num.split("/")[0]) - 1 for vertex_num in verts]
+                    face = [int(vertex_num.split("/")[0]) - 1 for vertex_num in verts] # vert1 vert2 vert3
                     self.faces.append(face)
 
     def get_X_borders(self):
@@ -39,4 +36,4 @@ class Object3D:
         return(min_z,max_z)
 
     def get_borders(self):
-        return (*self.get_X_borders, *self.get_Y_borders, *self.get_Z_borders)
+        return (*self.get_X_borders(), *self.get_Y_borders(), *self.get_Z_borders())
