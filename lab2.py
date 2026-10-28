@@ -6,7 +6,7 @@ import math
 import Object3D
 
 
-def DDA_plot(img: np.ndarray, x0, y0, x1, y1):
+def dda_plot(img: np.ndarray, x0, y0, x1, y1):
     dmax = max(abs(floor(x0) - floor(x1)), abs(floor(y0) - floor(y1)))
     L = dmax + 1
     if L == 1:
@@ -14,7 +14,7 @@ def DDA_plot(img: np.ndarray, x0, y0, x1, y1):
         return img
     dx = (x1 - x0) / (L - 1)
     dy = (y1 - y0) / (L - 1)
-    for i in range(L + 1):
+    for _ in range(L + 1):
         img[int(floor(x0)), int(floor(y0))] = 0
         x0 = dx + x0
         y0 = dy + y0
